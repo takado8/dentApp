@@ -4,9 +4,9 @@
              x:Class="dentApp.Views.ItemDetailPage"
              Title="{Binding Title}">
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Data:" FontSize="Medium" />
-        <Label Text="{Binding Item.Text}" FontSize="Small"/>
-        <Label Text="Opis:" FontSize="Medium" />
-        <Label Text="{Binding Item.Description}" FontSize="Small"/>
+        <Label Text="Data:" FontSize="Large" />
+        <Label Text="{Binding Item.Text}" FontSize="Medium"/>
+        <Label Text="Opis:" FontSize="Large" />
+        <Label Text="{Binding Item.Description}" FontSize="Medium"/>
     </StackLayout>
 </ContentPage>

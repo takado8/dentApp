@@ -23,10 +23,10 @@
     
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="Data" FontSize="Medium" />
-            <Entry Text="{Binding Item.Text}" FontSize="Small" />
-            <Label Text="Opis" FontSize="Medium" />
-            <Editor Text="{Binding Item.Description}" FontSize="Small" Margin="0" />
+            <Label Text="Data" FontSize="Large" />
+            <Entry Text="{Binding Item.Text}" FontSize="Medium" />
+            <Label Text="Opis" FontSize="Large" />
+            <Editor Text="{Binding Item.Description}" FontSize="Medium" Margin="0" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
