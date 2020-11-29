@@ -23,7 +23,11 @@ namespace dentApp.Views
             InitializeComponent();
 
             BindingContext = viewModel = new ItemsViewModel();
+           
         }
+
+        MainPage RootPage { get => Application.Current.MainPage as MainPage; }
+
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
@@ -32,7 +36,6 @@ namespace dentApp.Views
                 return;
 
             await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
-
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
         }

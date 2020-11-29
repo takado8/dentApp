@@ -1,0 +1,16 @@
+<RelativeLayout>
+        <Image Source="notification.png" WidthRequest="24" HeightRequest="24" Margin="5,7,0,0" />
+        <Frame BackgroundColor="#FF0000" OutlineColor="White" Margin="5,7,0,0"
+        RelativeLayout.HeightConstraint="24"
+        RelativeLayout.WidthConstraint="24"
+        CornerRadius="11"
+        HorizontalOptions="Center"
+        Padding="0"
+        IsClippedToBounds="True"
+        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=14}"
+        RelativeLayout.YConstraint="-6">
+            <StackLayout WidthRequest="24">
+                <Label Text="5" RelativeLayout.WidthConstraint="24" TextColor="White" FontSize="12" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+        </Frame>
+    </RelativeLayout>

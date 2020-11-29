@@ -16,9 +16,9 @@ namespace dentApp.Views
 
         private async void Button_wizyty_Clicked(object sender, EventArgs e)
         {
-            // Navigation.PushAsync(new ItemsPage());
-            
-            await RootPage.NavigateFromMenu(0);
+            await Navigation.PushAsync(new ItemsPage());
+
+            //await RootPage.NavigateFromMenu(0);
         }
     }
 }

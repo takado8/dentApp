@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using dentApp.Models;
+using System.IO;
+
 
 namespace dentApp.Services
 {
@@ -16,8 +18,7 @@ namespace dentApp.Services
             var mockItems = new List<Item>
             {
                 new Item { Id = Guid.NewGuid().ToString(), Text = "18.11.2020", Description="Ekstrakcja" },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "23.11.2020", Description="Kontrola" },
-                
+                new Item { Id = Guid.NewGuid().ToString(), Text = "23.11.2020", Description="Kontrola" },      
             };
 
             foreach (var item in mockItems)
@@ -29,7 +30,10 @@ namespace dentApp.Services
         public async Task<bool> AddItemAsync(Item item)
         {
             items.Add(item);
-
+            
+            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "aaatemp.txt");
+            File.WriteAllText(fileName, item.Text);
+            
             return await Task.FromResult(true);
         }
 
@@ -55,7 +59,7 @@ namespace dentApp.Services
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Item>> GetItemsAsync()
         {
             return await Task.FromResult(items);
         }
