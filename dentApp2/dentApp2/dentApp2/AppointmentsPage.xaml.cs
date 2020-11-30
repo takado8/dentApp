@@ -25,14 +25,12 @@ namespace dentApp2
 
         async void ItemsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-
             var item = e.SelectedItem as Item;
             if (item == null)
                 return;
 
             await Navigation.PushAsync(new ItemDetailPage(item));
             // Manually deselect item.
-
             ItemsListView.SelectedItem = null;
         }
 

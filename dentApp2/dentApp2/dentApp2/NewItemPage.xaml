@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:dentApp2"
              x:Class="dentApp2.NewItemPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Anuluj" Clicked="Cancel_Clicked">
@@ -20,16 +21,22 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout Spacing="20" Padding="15">
-            <Label Text="Data" FontSize="Large" />
-            <DatePicker MinimumDate="01/01/2020"
-            MaximumDate="01/01/2025" Format="dd'.'MM'.'yyyy"
-            Date="{Binding DateTime}" />
-            <Label Text="Godzina" FontSize="Large" />
-            <TimePicker Time="{Binding SelectedTime}" Format="HH:mm"/>
-
-            <Label Text="Opis" FontSize="Large" />
-            <Editor Text="{Binding Item.Description}" Focused="Editor_Focused" FontSize="Medium" Margin="0" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="15">
+                <Label Text="Data" FontSize="Large" />
+                <DatePicker MinimumDate="01/01/2020"
+                            MaximumDate="01/01/2025" Format="dd'.'MM'.'yyyy"
+                            Date="{Binding DateTime}" />
+                <Label Text="Godzina" FontSize="Large" />
+                <TimePicker Time="{Binding SelectedTime}" Format="HH:mm"/>
+                <Label Text="Lekarz" FontSize="Large" />
+                <Entry Text="{Binding Item.DentistName}" FontSize="Medium"/>
+                <Label Text="Rodzaj zabiegu" FontSize="Large" />
+                <Picker ItemsSource="{Binding Source={x:Static local:TreatmentTypes.Array}}" Title="Rodzaj zabiegu"
+                        SelectedItem="{Binding Item.TreatmentType}"/>
+                <Label Text="Opis" FontSize="Large" />
+                <Editor Text="{Binding Item.Description}" FontSize="Medium" Margin="0" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -9,6 +9,8 @@ namespace dentApp2
     public class Item
     {
         public string Date { get; set; }
+        public string DentistName { get; set; }
+        public string TreatmentType { get; set; }
         public string Description { get; set; }
     }
 
@@ -35,22 +37,20 @@ namespace dentApp2
             var itm1 = new Item()
             {
                 Date = "12.12.2020 - 15:30",
-                Description = "Ekstrakcja"
+                Description = "Dodatkowy opis.",
+                DentistName = "Aleksandra Kasprzak",
+                TreatmentType = "Ekstrakcja"
             };
             var itm2 = new Item()
             {
                 Date = "16.12.2020 - 16:00",
-                Description = "Wypełnienie"
+                TreatmentType = "Wypełnienie",
+                DentistName = "Aleksandra Kasprzak",
+                Description = "Dodatkowy opis."
             };
-            var itm3 = new Item()
-            {
-                Date = "18.12.2020 - 13:15",
-                Description = "Kontrola"
-            };
-
+          
             Items.Add(itm1);
             Items.Add(itm2);
-            Items.Add(itm3);
         }
 
     }
