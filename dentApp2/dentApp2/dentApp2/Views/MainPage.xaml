@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:dentApp2"
+             Title="Menu"
+             
+             x:Class="dentApp2.MainPage">
+    <NavigationPage.TitleView>
+        <Grid Margin="0,0,16,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Text="Menu" TextColor="WhiteSmoke" HorizontalTextAlignment="Center" FontSize="20" Grid.Column="1" />
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--Page Level Resources: Compatible with Xamarin Live Player -->
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="WhiteSmoke" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,20,0,20">
+                    <Image Source="logo.png" Aspect="AspectFill"  HeightRequest="64" />
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Grid.Row="1" Orientation="Vertical" Padding="16,20,16,40" Spacing="10">
+
+            <Button x:Name="button_wizyty" Margin="0,2,0,0" Text="Wizyty"
+                        Clicked="Button_wizyty_Clicked"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" />
+
+            <Button Margin="0,2,0,0" Text="Dokumentacja"
+                       
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" />
+            <Button Margin="0,2,0,0" Text="Kompendium wiedzy"
+                       
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" />
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

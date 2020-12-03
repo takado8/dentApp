@@ -31,8 +31,7 @@ namespace dentApp.Services
         {
             items.Add(item);
             
-            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "aaatemp.txt");
-            File.WriteAllText(fileName, item.Text);
+           
             
             return await Task.FromResult(true);
         }
