@@ -1,4 +1,5 @@
-﻿using System;
+﻿using dentApp2.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,20 +10,30 @@ namespace dentApp2
 {
     public partial class MainPage : ContentPage
     {
-        AppointmentsPage appointmentsPage;
+        AppointmentsPage AppointmentsPage;
+        DocumentationPage DocumentationPage;
 
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void Button_wizyty_Clicked(object sender, EventArgs e)
+        private void Button_Appointments_Clicked(object sender, EventArgs e)
         {
-            if(appointmentsPage == null)
+            if(AppointmentsPage == null)
             {
-                appointmentsPage = new AppointmentsPage();
+                AppointmentsPage = new AppointmentsPage();
             }
-            Navigation.PushAsync(appointmentsPage);
+            Navigation.PushAsync(AppointmentsPage);
+        }
+
+        private void Button_Documentation_Clicked(object sender, EventArgs e)
+        {
+            if (DocumentationPage == null)
+            {
+                DocumentationPage = new DocumentationPage();
+            }
+            Navigation.PushAsync(DocumentationPage);
         }
     }
 }

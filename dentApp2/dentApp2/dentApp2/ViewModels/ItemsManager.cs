@@ -55,7 +55,7 @@ namespace dentApp2.ViewModels
             };
             var itm3 = new Item()
             {
-                DateTime = new DateTime(2020, 12, 14, 17, 45, 0),
+                DateTime = new DateTime(2020, 12, 14, 13, 30, 0),
                 TreatmentType = "Wypełnienie",
                 DentistName = "Aleksandra Kasprzak",
                 Description = "Dodatkowy opis."

@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="dentApp2.Views.AppointmentsPage">
-
+             x:Class="dentApp2.Views.DocumentationPage">
     <NavigationPage.TitleView>
         <StackLayout Margin="0,0,16,0">
             <Label Text="Wizyty" TextColor="WhiteSmoke" HorizontalTextAlignment="Center" FontSize="20" Grid.Column="1" />
@@ -14,7 +13,7 @@
     </ContentPage.ToolbarItems>
 
     <StackLayout>
-        <ListView x:Name="ItemsListView"
+        <ListView x:Name="ItemsListView2"
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"

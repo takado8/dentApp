@@ -2,23 +2,24 @@
 using dentApp2.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace dentApp2.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AppointmentsPage : ContentPage
-    {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class DocumentationPage : ContentPage
+	{
         ItemsManager itemsManager = new ItemsManager();
 
-        public AppointmentsPage()
-        {
-            InitializeComponent();
+
+        public DocumentationPage ()
+		{
+			InitializeComponent ();
             BindingContext = itemsManager;
         }
 
@@ -29,7 +30,7 @@ namespace dentApp2.Views
 
             await Navigation.PushAsync(new ItemDetailPage(item));
             // Manually deselect item.
-            ItemsListView.SelectedItem = null;
+            ItemsListView2.SelectedItem = null;
         }
 
         async void ToolbarItem_Add_Clicked(object sender, EventArgs e)

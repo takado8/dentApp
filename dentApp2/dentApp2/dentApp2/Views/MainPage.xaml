@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:dentApp2"
              Title="Menu"
-             
+             NavigationPage.HasNavigationBar="false"
              x:Class="dentApp2.MainPage">
     <NavigationPage.TitleView>
         <Grid Margin="0,0,16,0">
@@ -29,23 +29,21 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="WhiteSmoke" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,20,0,20">
-                    <Image Source="logo.png" Aspect="AspectFill"  HeightRequest="64" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                <ContentView Padding="0,0,0,0">
+                    <Image Source="logo.png" Aspect="AspectFill"  HeightRequest="180" WidthRequest="256" />
                 </ContentView>
             </StackLayout>
-        </StackLayout>
 
         <StackLayout Grid.Row="1" Orientation="Vertical" Padding="16,20,16,40" Spacing="10">
 
             <Button x:Name="button_wizyty" Margin="0,2,0,0" Text="Wizyty"
-                        Clicked="Button_wizyty_Clicked"
+                        Clicked="Button_Appointments_Clicked"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
 
             <Button Margin="0,2,0,0" Text="Dokumentacja"
-                       
+                        Clicked="Button_Documentation_Clicked"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
             <Button Margin="0,2,0,0" Text="Kompendium wiedzy"
