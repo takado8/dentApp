@@ -32,7 +32,7 @@
                 <Label Text="Lekarz" FontSize="Large" />
                 <Entry Text="{Binding Item.DentistName}" FontSize="Medium"/>
                 <Label Text="Rodzaj zabiegu" FontSize="Large" />
-                <Picker ItemsSource="{Binding Source={x:Static local:ViewModels.TreatmentTypes.Array}}" Title="Rodzaj zabiegu"
+                <Picker ItemsSource="{Binding Source={x:Static local:Models.TreatmentTypes.Array}}" Title="Rodzaj zabiegu"
                         SelectedItem="{Binding Item.TreatmentType}"/>
                 <Label Text="Opis" FontSize="Large" />
                 <Editor Text="{Binding Item.Description}" FontSize="Medium" Margin="0" />

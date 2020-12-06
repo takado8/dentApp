@@ -17,6 +17,12 @@ namespace dentApp2.ViewModels
                 InsertItem(newItem);
             });
 
+            MessagingCenter.Subscribe<AppointmentItemDetailPage, Item>(this, "AddDocumentationItem", (obj, item) =>
+            {
+                var newItem = item as Item;
+                InsertItem(newItem);
+            });
+
             MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "DelDocumentationItem", (obj, item) =>
             {
                 var oldItem = item as Item;

@@ -39,9 +39,15 @@ namespace dentApp2.Views
 
         async void ToolbarItem_Archive_Clicked(object sender, EventArgs e)
         {
-            if (await DisplayAlert("Uwaga!", "Przenieść wizytę do archiwum?", "Tak", "Nie"))
+            if (await DisplayAlert("Uwaga!", "Przenieść wizytę do dokumentacji?", "Tak", "Nie"))
             {
-
+                // change item status
+                Item.Status = Item.status.Documentation;
+                // send item to documentation
+                MessagingCenter.Send(this, "AddDocumentationItem", Item);
+                // delete item from appointments
+                MessagingCenter.Send(this, "DelAppointmentItem", Item);
+                await Navigation.PopAsync();
             }
         }
     }

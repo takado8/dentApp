@@ -16,6 +16,7 @@ namespace dentApp2.Views
         public MainPage()
         {
             InitializeComponent();
+            DocumentationPage = new DocumentationPage();
         }
 
         private void Button_Appointments_Clicked(object sender, EventArgs e)

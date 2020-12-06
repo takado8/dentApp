@@ -14,13 +14,12 @@ namespace dentApp2.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DocumentationPage : ContentPage
 	{
-        DocumentationViewModel DocumentationViewModel = new DocumentationViewModel();
-
+        DocumentationViewModel DocumentationViewModel;
 
         public DocumentationPage ()
 		{
 			InitializeComponent ();
-            BindingContext = DocumentationViewModel;
+            BindingContext = DocumentationViewModel = new DocumentationViewModel();
         }
 
         async void ItemsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

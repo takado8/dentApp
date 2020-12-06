@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
-namespace dentApp2.ViewModels
+namespace dentApp2.Models
 {
     public static class TreatmentTypes
     {
