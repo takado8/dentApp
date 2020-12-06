@@ -14,13 +14,13 @@ namespace dentApp2.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DocumentationPage : ContentPage
 	{
-        ItemsManager itemsManager = new ItemsManager();
+        DocumentationViewModel DocumentationViewModel = new DocumentationViewModel();
 
 
         public DocumentationPage ()
 		{
 			InitializeComponent ();
-            BindingContext = itemsManager;
+            BindingContext = DocumentationViewModel;
         }
 
         async void ItemsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -28,14 +28,14 @@ namespace dentApp2.Views
             if (!(e.SelectedItem is Item item))
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(item));
+            await Navigation.PushAsync(new DocumentationItemDetailPage(item));
             // Manually deselect item.
             ItemsListView2.SelectedItem = null;
         }
 
         async void ToolbarItem_Add_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewItemPage());
+            await Navigation.PushAsync(new NewItemPage(Item.status.Documentation));
         }
     }
 }

@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="dentApp2.ItemDetailPage">
+             x:Class="dentApp2.Views.AppointmentItemDetailPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Archiwuj" Clicked="ToolbarItem_Archive_Clicked"/>
+        
+        <ToolbarItem Text="Archiwizuj" Clicked="ToolbarItem_Archive_Clicked"/>
         <ToolbarItem Text="Edytuj" Clicked="ToolbarItem_Edit_Clicked"/>
         <ToolbarItem Text="Usuń" Clicked="ToolbarItem_Delete_Clicked"/>
     </ContentPage.ToolbarItems>

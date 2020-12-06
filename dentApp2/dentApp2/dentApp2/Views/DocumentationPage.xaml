@@ -4,7 +4,7 @@
              x:Class="dentApp2.Views.DocumentationPage">
     <NavigationPage.TitleView>
         <StackLayout Margin="0,0,16,0">
-            <Label Text="Wizyty" TextColor="WhiteSmoke" HorizontalTextAlignment="Center" FontSize="20" Grid.Column="1" />
+            <Label Text="Dokumentacja" TextColor="WhiteSmoke" HorizontalTextAlignment="Center" FontSize="20" Grid.Column="1" />
         </StackLayout>
     </NavigationPage.TitleView>
 

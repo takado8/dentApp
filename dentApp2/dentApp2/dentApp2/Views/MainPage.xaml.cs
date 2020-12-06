@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace dentApp2
+namespace dentApp2.Views
 {
     public partial class MainPage : ContentPage
     {

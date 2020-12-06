@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace dentApp2.ViewModels
 {
@@ -11,11 +12,12 @@ namespace dentApp2.ViewModels
         public Item Item { get; set; }
         public Item OldItem;
 
-        public NewItemViewModel()
+        public NewItemViewModel(Item.status status)
         {
             Item = new Item()
             {
-                DateTime = DateTime.Now
+                DateTime = DateTime.Now,
+                Status = status
             };
             SelectedTime = new TimeSpan(Item.DateTime.Hour, 0, 0);
         }
@@ -25,6 +27,29 @@ namespace dentApp2.ViewModels
             OldItem = existing_item;
             Item = new Item(existing_item);
             SelectedTime = new TimeSpan(Item.DateTime.Hour, Item.DateTime.Minute, 0);
+        }
+
+        public void SaveNewItem()
+        {
+            Item.DateTime = new DateTime(Item.DateTime.Year, Item.DateTime.Month,
+                Item.DateTime.Day, SelectedTime.Hours, SelectedTime.Minutes, 0);
+
+            if (Item.Status == Item.status.Appointment)
+                MessagingCenter.Send(this, "AddAppointmentItem", Item);
+            else if (Item.Status == Item.status.Documentation)
+                MessagingCenter.Send(this, "AddDocumentationItem", Item);
+            else throw new NotImplementedException("Failed to save the Item, Item.status is null");
+
+        }
+
+        public void SaveEditedItem()
+        {
+            // delete old copy
+            if (Item.Status == Item.status.Appointment)
+                MessagingCenter.Send(this, "DelAppointmentItem", OldItem);
+            else
+                MessagingCenter.Send(this, "DelDocumentationItem", OldItem);
+            SaveNewItem();
         }
     }
 }

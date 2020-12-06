@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace dentApp2
+namespace dentApp2.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewItemPage : ContentPage
@@ -19,10 +19,10 @@ namespace dentApp2
         NewItemViewModel NewItemViewModel;
 
 
-        public NewItemPage()
+        public NewItemPage(Item.status status)
         {
             InitializeComponent();
-            BindingContext = NewItemViewModel = new NewItemViewModel();
+            BindingContext = NewItemViewModel = new NewItemViewModel(status);
         }
 
         public NewItemPage(Item existing_item)
@@ -34,18 +34,15 @@ namespace dentApp2
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            NewItemViewModel.Item.DateTime = new DateTime(NewItemViewModel.Item.DateTime.Year,
-                NewItemViewModel.Item.DateTime.Month, NewItemViewModel.Item.DateTime.Day,
-                NewItemViewModel.SelectedTime.Hours, NewItemViewModel.SelectedTime.Minutes, 0);
-
             if (edit_mode)
             {
-                // delete old copy
-                MessagingCenter.Send(this, "DelItem", NewItemViewModel.OldItem);
-                // remove old ItemDetailPage
+                NewItemViewModel.SaveEditedItem();
+                // remove old ItemDetailPage from navigation stack.
                 Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
             }
-            MessagingCenter.Send(this, "AddItem", NewItemViewModel.Item);
+            else
+                NewItemViewModel.SaveNewItem();
+
             await Navigation.PopAsync();
         }
 
@@ -53,7 +50,5 @@ namespace dentApp2
         {
             await Navigation.PopAsync();
         }
-
-
     }
 }

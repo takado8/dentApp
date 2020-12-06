@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:dentApp2"
              Title="Menu"
              NavigationPage.HasNavigationBar="false"
-             x:Class="dentApp2.MainPage">
+             x:Class="dentApp2.Views.MainPage">
     <NavigationPage.TitleView>
         <Grid Margin="0,0,16,0">
             <Grid.ColumnDefinitions>
@@ -31,7 +31,7 @@
         </Grid.RowDefinitions>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                 <ContentView Padding="0,0,0,0">
-                    <Image Source="logo.png" Aspect="AspectFill"  HeightRequest="180" WidthRequest="256" />
+                    <Image Source="logo.png" Aspect="AspectFill" WidthRequest="256" HeightRequest="180" />
                 </ContentView>
             </StackLayout>
 

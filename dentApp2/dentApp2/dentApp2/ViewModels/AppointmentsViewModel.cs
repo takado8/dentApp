@@ -1,4 +1,5 @@
 ﻿using dentApp2.Models;
+using dentApp2.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,33 +8,23 @@ using Xamarin.Forms;
 
 namespace dentApp2.ViewModels
 {
-    public class ItemsManager
+    public class AppointmentsViewModel : ItemsBaseViewModel
     {
-        ObservableCollection<Item> _items;
-
-        public ObservableCollection<Item> Items
+        public AppointmentsViewModel()
         {
-            get
-            {
-                return _items ?? (_items = new ObservableCollection<Item>());
-            }
-        }
-      
-        public ItemsManager()
-        {
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", (obj, item) =>
+            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "AddAppointmentItem", (obj, item) =>
             {
                 var newItem = item as Item;
                 InsertItem(newItem);
             });
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "DelItem", (obj, item) =>
+            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "DelAppointmentItem", (obj, item) =>
             {
                 var oldItem = item as Item;
                 Items.Remove(oldItem);
             });
 
-            MessagingCenter.Subscribe<ItemDetailPage, Item>(this, "DelItem", (obj, item) =>
+            MessagingCenter.Subscribe<AppointmentItemDetailPage, Item>(this, "DelAppointmentItem", (obj, item) =>
             {
                 var oldItem = item as Item;
                 Items.Remove(oldItem);
@@ -44,21 +35,24 @@ namespace dentApp2.ViewModels
                 DateTime = new DateTime(2020, 12, 22, 15, 30, 0),
                 Description = "Dodatkowy opis.",
                 DentistName = "Aleksandra Kasprzak",
-                TreatmentType = "Ekstrakcja"
+                TreatmentType = "Ekstrakcja",
+                Status = Item.status.Appointment
             };
             var itm2 = new Item()
             {
                 DateTime = new DateTime(2020, 12, 18, 17, 45, 0),
                 TreatmentType = "Wypełnienie",
                 DentistName = "Aleksandra Kasprzak",
-                Description = "Dodatkowy opis."
+                Description = "Dodatkowy opis.",
+                Status = Item.status.Appointment
             };
             var itm3 = new Item()
             {
                 DateTime = new DateTime(2020, 12, 14, 13, 30, 0),
                 TreatmentType = "Wypełnienie",
                 DentistName = "Aleksandra Kasprzak",
-                Description = "Dodatkowy opis."
+                Description = "Dodatkowy opis.",
+                Status = Item.status.Appointment
             };
 
             InsertItem(itm1);
@@ -66,18 +60,6 @@ namespace dentApp2.ViewModels
             InsertItem(itm3);
         }
 
-        void InsertItem(Item item)
-        {
-            int i = 0;
-            for (i = 0; i < Items.Count; i++)
-            {
-                if (item.DateTime.CompareTo(Items[i].DateTime) < 0)
-                {
-                    break;
-                }
-            }
-            Items.Insert(i, item);
-        }
-
+       
     }
 }

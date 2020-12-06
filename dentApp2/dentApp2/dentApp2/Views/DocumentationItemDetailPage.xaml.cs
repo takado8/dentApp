@@ -1,0 +1,39 @@
+﻿using dentApp2.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace dentApp2.Views
+{
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class DocumentationItemDetailPage : ContentPage
+	{
+        public Item Item { get; set; }
+
+        public DocumentationItemDetailPage(Item Item)
+        {
+            InitializeComponent();
+            this.Item = Item;
+            BindingContext = this;
+        }
+
+        async void ToolbarItem_Edit_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewItemPage(Item));
+        }
+
+        async void ToolbarItem_Delete_Clicked(object sender, EventArgs e)
+        {
+            if (await DisplayAlert("Uwaga!", "Usunąć wizytę?", "Tak", "Nie"))
+            {
+                MessagingCenter.Send(this, "DelDocumentationItem", Item);
+                await Navigation.PopAsync();
+            }
+        }
+    }
+}

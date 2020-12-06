@@ -9,17 +9,16 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace dentApp2
+namespace dentApp2.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemDetailPage : ContentPage
+    public partial class AppointmentItemDetailPage : ContentPage
     {
         public Item Item { get; set; }
 
-        public ItemDetailPage(Item Item)
+        public AppointmentItemDetailPage(Item Item)
         {
             InitializeComponent();
-
             this.Item = Item;
             BindingContext = this;
         }
@@ -31,19 +30,18 @@ namespace dentApp2
 
         async void ToolbarItem_Delete_Clicked(object sender, EventArgs e)
         {
-            bool answer = await DisplayAlert("Uwaga!", "Usunąć wizytę?", "Tak", "Nie");
-            if (answer)
+            if (await DisplayAlert("Uwaga!", "Usunąć wizytę?", "Tak", "Nie"))
             {
-                MessagingCenter.Send(this, "DelItem", Item);
+                MessagingCenter.Send(this, "DelAppointmentItem", Item);
                 await Navigation.PopAsync();
             }
         }
 
         async void ToolbarItem_Archive_Clicked(object sender, EventArgs e)
         {
-            bool answer = await DisplayAlert("Uwaga!", "Przenieść wizytę do archiwum?", "Tak", "Nie");
-            if (answer)
+            if (await DisplayAlert("Uwaga!", "Przenieść wizytę do archiwum?", "Tak", "Nie"))
             {
+
             }
         }
     }

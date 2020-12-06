@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="dentApp2.Views.DocumentationItemDetailPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edytuj" Clicked="ToolbarItem_Edit_Clicked"/>
+        <ToolbarItem Text="Usuń" Clicked="ToolbarItem_Delete_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout x:Name="stackLayout" Spacing="20" Padding="15">
+            <Label Text="Data:" FontSize="Large" />
+            <Label Text="{Binding Item.DateTimeString}" FontSize="Medium"/>
+
+            <Label Text="Lekarz:" FontSize="Large" />
+            <Label Text="{Binding Item.DentistName}" FontSize="Medium"/>
+
+            <Label Text="Zabieg:" FontSize="Large" />
+            <Label Text="{Binding Item.TreatmentType}" FontSize="Medium"/>
+
+            <Label Text="Opis:" FontSize="Large" />
+            <Label Text="{Binding Item.Description}" FontSize="Medium"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
