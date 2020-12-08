@@ -17,31 +17,38 @@ namespace dentApp2.ViewModels
                 var newItem = item as Item;
                 InsertItem(newItem);
                 var result = await SQLiteDataStorage.AddItemAsync(newItem);
+                //if(!result.Equals(string.Empty))
+                //{
+                //    // error 
+                //}
             });
 
-            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "DelAppointmentItem", (obj, item) =>
+            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "DelAppointmentItem", async (obj, item) =>
             {
                 var oldItem = item as Item;
                 Items.Remove(oldItem);
+                var result = await SQLiteDataStorage.DelItemAsync(oldItem);
+
             });
 
-            MessagingCenter.Subscribe<AppointmentItemDetailPage, Item>(this, "DelAppointmentItem", (obj, item) =>
+            MessagingCenter.Subscribe<AppointmentItemDetailPage, Item>(this, "DelAppointmentItem", async (obj, item) =>
             {
                 var oldItem = item as Item;
                 Items.Remove(oldItem);
+                var result = await SQLiteDataStorage.DelItemAsync(oldItem);
+
             });
 
             var itemsTask = SQLiteDataStorage.GetItemsAsync(Item.status.Appointment);
             itemsTask.Wait();
             var items = itemsTask.Result;
-            
-            if (items.Length > 0)
+
+
+            foreach (var item in items)
             {
-                foreach (var item in items)
-                {
-                    InsertItem(item);
-                }
+                InsertItem(item);
             }
+
 
             //var itm1 = new Item()
             //{
@@ -72,7 +79,5 @@ namespace dentApp2.ViewModels
             //InsertItem(itm2);
             //InsertItem(itm3);
         }
-
-       
     }
 }

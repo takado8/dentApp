@@ -19,15 +19,12 @@ namespace dentApp2.Views
         {
             InitializeComponent();
             DocumentationPage = new DocumentationPage();
-           // var items = SQLiteDataStorage.GetItemsAsync(Item.status.Appointment);
-
         }
 
         private void Button_Appointments_Clicked(object sender, EventArgs e)
         {
             if (AppointmentsPage == null)
             {
-
                 AppointmentsPage = new AppointmentsPage();
             }
             Navigation.PushAsync(AppointmentsPage);
@@ -37,7 +34,6 @@ namespace dentApp2.Views
         {
             if (DocumentationPage == null)
             {
-
                 DocumentationPage = new DocumentationPage();
             }
             Navigation.PushAsync(DocumentationPage);

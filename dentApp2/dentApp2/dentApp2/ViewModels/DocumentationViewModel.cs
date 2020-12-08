@@ -11,57 +11,71 @@ namespace dentApp2.ViewModels
     {
         public DocumentationViewModel()
         {
-            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "AddDocumentationItem", (obj, item) =>
+            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "AddDocumentationItem", async (obj, item) =>
             {
                 var newItem = item as Item;
                 InsertItem(newItem);
+                var result = await SQLiteDataStorage.AddItemAsync(newItem);
             });
 
-            MessagingCenter.Subscribe<AppointmentItemDetailPage, Item>(this, "AddDocumentationItem", (obj, item) =>
+            MessagingCenter.Subscribe<AppointmentItemDetailPage, Item>(this, "AddDocumentationItem", async (obj, item) =>
             {
                 var newItem = item as Item;
                 InsertItem(newItem);
+                var result = await SQLiteDataStorage.AddItemAsync(newItem);
             });
 
-            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "DelDocumentationItem", (obj, item) =>
+            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "DelDocumentationItem", async (obj, item) =>
             {
                 var oldItem = item as Item;
                 Items.Remove(oldItem);
+                var result = await SQLiteDataStorage.DelItemAsync(oldItem);
             });
 
-            MessagingCenter.Subscribe<DocumentationItemDetailPage, Item>(this, "DelDocumentationItem", (obj, item) =>
+            MessagingCenter.Subscribe<DocumentationItemDetailPage, Item>(this, "DelDocumentationItem", async (obj, item) =>
             {
                 var oldItem = item as Item;
                 Items.Remove(oldItem);
+                var result = await SQLiteDataStorage.DelItemAsync(oldItem);
             });
 
-            var itm1 = new Item()
+            var itemsTask = SQLiteDataStorage.GetItemsAsync(Item.status.Documentation);
+            itemsTask.Wait();
+            var items = itemsTask.Result;
+
+            foreach (var item in items)
             {
-                DateTime = new DateTime(2020, 4, 22, 15, 30, 0),
-                Description = "Dodatkowy opis.",
-                DentistName = "Aleksandra Kasprzak",
-                TreatmentType = "Ekstrakcja",
-                Status = Item.status.Documentation
-            };
-            var itm2 = new Item()
-            {
-                DateTime = new DateTime(2020, 4, 18, 17, 45, 0),
-                TreatmentType = "Wypełnienie",
-                DentistName = "Aleksandra Kasprzak",
-                Description = "Dodatkowy opis.",
-                Status = Item.status.Documentation
-            };
-            var itm3 = new Item()
-            {
-                DateTime = new DateTime(2020, 4, 14, 13, 30, 0),
-                TreatmentType = "Wypełnienie",
-                DentistName = "Aleksandra Kasprzak",
-                Description = "Dodatkowy opis.",
-                Status = Item.status.Documentation
-            };
-            InsertItem(itm1);
-            InsertItem(itm2);
-            InsertItem(itm3);
+                InsertItem(item);
+            }
+
+
+            //var itm1 = new Item()
+            //{
+            //    DateTime = new DateTime(2020, 4, 22, 15, 30, 0),
+            //    Description = "Dodatkowy opis.",
+            //    DentistName = "Aleksandra Kasprzak",
+            //    TreatmentType = "Ekstrakcja",
+            //    Status = Item.status.Documentation
+            //};
+            //var itm2 = new Item()
+            //{
+            //    DateTime = new DateTime(2020, 4, 18, 17, 45, 0),
+            //    TreatmentType = "Wypełnienie",
+            //    DentistName = "Aleksandra Kasprzak",
+            //    Description = "Dodatkowy opis.",
+            //    Status = Item.status.Documentation
+            //};
+            //var itm3 = new Item()
+            //{
+            //    DateTime = new DateTime(2020, 4, 14, 13, 30, 0),
+            //    TreatmentType = "Wypełnienie",
+            //    DentistName = "Aleksandra Kasprzak",
+            //    Description = "Dodatkowy opis.",
+            //    Status = Item.status.Documentation
+            //};
+            //InsertItem(itm1);
+            //InsertItem(itm2);
+            //InsertItem(itm3);
         }
     }
 }
