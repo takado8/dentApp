@@ -1,10 +1,11 @@
 ﻿using System;
+using SQLite;
 using System.Collections.Generic;
 using System.Text;
 
 namespace dentApp2.Models
 {
- 
+    [Table("Items")]
     public class Item
     {
         public enum status
@@ -12,6 +13,9 @@ namespace dentApp2.Models
             Appointment,
             Documentation
         }
+
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public DateTime DateTime { get; set; }
         public string DentistName { get; set; }
         public string TreatmentType { get; set; }

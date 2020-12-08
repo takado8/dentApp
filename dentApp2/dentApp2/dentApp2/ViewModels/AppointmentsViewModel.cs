@@ -12,10 +12,11 @@ namespace dentApp2.ViewModels
     {
         public AppointmentsViewModel()
         {
-            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "AddAppointmentItem", (obj, item) =>
+            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "AddAppointmentItem", async (obj, item) =>
             {
                 var newItem = item as Item;
                 InsertItem(newItem);
+                var result = await SQLiteDataStorage.AddItemAsync(newItem);
             });
 
             MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "DelAppointmentItem", (obj, item) =>
@@ -30,34 +31,46 @@ namespace dentApp2.ViewModels
                 Items.Remove(oldItem);
             });
 
-            var itm1 = new Item()
+            var itemsTask = SQLiteDataStorage.GetItemsAsync(Item.status.Appointment);
+            itemsTask.Wait();
+            var items = itemsTask.Result;
+            
+            if (items.Length > 0)
             {
-                DateTime = new DateTime(2020, 12, 22, 15, 30, 0),
-                Description = "Dodatkowy opis.",
-                DentistName = "Aleksandra Kasprzak",
-                TreatmentType = "Ekstrakcja",
-                Status = Item.status.Appointment
-            };
-            var itm2 = new Item()
-            {
-                DateTime = new DateTime(2020, 12, 18, 17, 45, 0),
-                TreatmentType = "Wypełnienie",
-                DentistName = "Aleksandra Kasprzak",
-                Description = "Dodatkowy opis.",
-                Status = Item.status.Appointment
-            };
-            var itm3 = new Item()
-            {
-                DateTime = new DateTime(2020, 12, 14, 13, 30, 0),
-                TreatmentType = "Wypełnienie",
-                DentistName = "Aleksandra Kasprzak",
-                Description = "Dodatkowy opis.",
-                Status = Item.status.Appointment
-            };
+                foreach (var item in items)
+                {
+                    InsertItem(item);
+                }
+            }
 
-            InsertItem(itm1);
-            InsertItem(itm2);
-            InsertItem(itm3);
+            //var itm1 = new Item()
+            //{
+            //    DateTime = new DateTime(2020, 12, 22, 15, 30, 0),
+            //    Description = "Dodatkowy opis.",
+            //    DentistName = "Aleksandra Kasprzak",
+            //    TreatmentType = "Ekstrakcja",
+            //    Status = Item.status.Appointment
+            //};
+            //var itm2 = new Item()
+            //{
+            //    DateTime = new DateTime(2020, 12, 18, 17, 45, 0),
+            //    TreatmentType = "Wypełnienie",
+            //    DentistName = "Aleksandra Kasprzak",
+            //    Description = "Dodatkowy opis.",
+            //    Status = Item.status.Appointment
+            //};
+            //var itm3 = new Item()
+            //{
+            //    DateTime = new DateTime(2020, 12, 14, 13, 30, 0),
+            //    TreatmentType = "Wypełnienie",
+            //    DentistName = "Aleksandra Kasprzak",
+            //    Description = "Dodatkowy opis.",
+            //    Status = Item.status.Appointment
+            //};
+
+            //InsertItem(itm1);
+            //InsertItem(itm2);
+            //InsertItem(itm3);
         }
 
        

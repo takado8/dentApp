@@ -1,4 +1,5 @@
 ﻿using dentApp2.Models;
+using dentApp2.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +10,8 @@ namespace dentApp2.ViewModels
     public class ItemsBaseViewModel
     {
         ObservableCollection<Item> _items;
+        public SQLiteDataStorage SQLiteDataStorage = new SQLiteDataStorage();
+
 
         public ObservableCollection<Item> Items
         {
