@@ -22,16 +22,12 @@ namespace dentApp2.ViewModels
 
             MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "DelAppointmentItem", async (obj, item) =>
             {
-                var oldItem = item as Item;
-                Items.Remove(oldItem);
-                await SQLiteDataStorage.DelItemAsync(oldItem);
+                DeleteItem(item);
             });
 
             MessagingCenter.Subscribe<AppointmentItemDetailPage, Item>(this, "DelAppointmentItem", async (obj, item) =>
             {
-                var oldItem = item as Item;
-                Items.Remove(oldItem);
-                await SQLiteDataStorage.DelItemAsync(oldItem);
+                DeleteItem(item);
             });
 
             var itemsTask = SQLiteDataStorage.GetItemsAsync(Item.status.Appointment);
@@ -42,6 +38,12 @@ namespace dentApp2.ViewModels
             {
                 InsertItem(item);
             }
+        }
+
+        async void DeleteItem(Item oldItem)
+        {
+            Items.Remove(oldItem);
+            await SQLiteDataStorage.DelItemAsync(oldItem);
         }
     }
 }

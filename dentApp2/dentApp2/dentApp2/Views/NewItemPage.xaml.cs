@@ -15,10 +15,9 @@ namespace dentApp2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewItemPage : ContentPage
     {
+        NewItemViewModel NewItemViewModel;
         bool EditMode = false;
         bool ButtonIsBusy = false; 
-        NewItemViewModel NewItemViewModel;
-
 
         public NewItemPage(Item.status status)
         {

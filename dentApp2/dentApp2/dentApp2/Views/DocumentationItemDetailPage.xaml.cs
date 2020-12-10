@@ -16,7 +16,6 @@ namespace dentApp2.Views
         public Item Item { get; set; }
         bool ButtonIsBusy = false;
 
-
         public DocumentationItemDetailPage(Item Item)
         {
             InitializeComponent();
@@ -34,6 +33,7 @@ namespace dentApp2.Views
             if (ButtonIsBusy)
                 return;
             ButtonIsBusy = true;
+
             if (await DisplayAlert("Uwaga!", "Usunąć wizytę?", "Tak", "Nie"))
             {
                 MessagingCenter.Send(this, "DelDocumentationItem", Item);

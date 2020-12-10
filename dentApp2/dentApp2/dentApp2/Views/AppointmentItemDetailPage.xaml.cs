@@ -34,6 +34,7 @@ namespace dentApp2.Views
             if (ButtonIsBusy)
                 return;
             ButtonIsBusy = true;
+
             if (await DisplayAlert("Uwaga!", "Usunąć wizytę?", "Tak", "Nie"))
             {
                 MessagingCenter.Send(this, "DelAppointmentItem", Item);
@@ -47,6 +48,7 @@ namespace dentApp2.Views
             if (ButtonIsBusy)
                 return;
             ButtonIsBusy = true;
+
             if (await DisplayAlert("Uwaga!", "Przenieść wizytę do dokumentacji?", "Tak", "Nie"))
             {
                 // delete item from appointments

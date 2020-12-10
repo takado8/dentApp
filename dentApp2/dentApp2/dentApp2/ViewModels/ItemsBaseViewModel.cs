@@ -30,7 +30,7 @@ namespace dentApp2.ViewModels
 
         public void InsertItem(Item item)
         {
-            int i = 0;
+            int i;
             for (i = 0; i < Items.Count; i++)
             {
                 if (item.DateTime.CompareTo(Items[i].DateTime) < 0)

@@ -27,6 +27,7 @@ namespace dentApp2.Views
         {
             if (!(e.SelectedItem is Item item))
                 return;
+
             await Navigation.PushAsync(new AppointmentItemDetailPage(item));
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
