@@ -14,6 +14,7 @@ namespace dentApp2.Views
     {
         AppointmentsPage AppointmentsPage;
         DocumentationPage DocumentationPage;
+        bool ButtonIsBusy = false;
 
         public MainPage()
         {
@@ -23,6 +24,10 @@ namespace dentApp2.Views
 
         private void Button_Appointments_Clicked(object sender, EventArgs e)
         {
+            if (ButtonIsBusy)
+                return;
+            ButtonIsBusy = true;
+
             if (AppointmentsPage == null)
             {
                 AppointmentsPage = new AppointmentsPage();
@@ -32,11 +37,18 @@ namespace dentApp2.Views
 
         private void Button_Documentation_Clicked(object sender, EventArgs e)
         {
-            if (DocumentationPage == null)
-            {
-                DocumentationPage = new DocumentationPage();
-            }
+            if (ButtonIsBusy)
+                return;
+            ButtonIsBusy = true;
             Navigation.PushAsync(DocumentationPage);
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (ButtonIsBusy)
+                ButtonIsBusy = false;
+        }
     }
+
 }

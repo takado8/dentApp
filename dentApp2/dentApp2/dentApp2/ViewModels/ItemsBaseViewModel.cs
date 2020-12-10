@@ -10,8 +10,15 @@ namespace dentApp2.ViewModels
     public class ItemsBaseViewModel
     {
         ObservableCollection<Item> _items;
-        public SQLiteDataStorage SQLiteDataStorage = new SQLiteDataStorage();
-
+        static SQLiteDataStorage _SQLiteDataStorage;
+       
+        public SQLiteDataStorage SQLiteDataStorage
+        {
+            get
+            {
+                return _SQLiteDataStorage ?? (_SQLiteDataStorage = new SQLiteDataStorage());
+            }
+        }
 
         public ObservableCollection<Item> Items
         {

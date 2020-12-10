@@ -1,4 +1,5 @@
 ﻿using dentApp2.Models;
+using dentApp2.Services;
 using dentApp2.Views;
 using System;
 using System.Collections.Generic;
@@ -16,68 +17,31 @@ namespace dentApp2.ViewModels
             {
                 var newItem = item as Item;
                 InsertItem(newItem);
-                var result = await SQLiteDataStorage.AddItemAsync(newItem);
-                //if(!result.Equals(string.Empty))
-                //{
-                //    // error 
-                //}
+                await SQLiteDataStorage.AddItemAsync(newItem);
             });
 
             MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "DelAppointmentItem", async (obj, item) =>
             {
                 var oldItem = item as Item;
                 Items.Remove(oldItem);
-                var result = await SQLiteDataStorage.DelItemAsync(oldItem);
-
+                await SQLiteDataStorage.DelItemAsync(oldItem);
             });
 
             MessagingCenter.Subscribe<AppointmentItemDetailPage, Item>(this, "DelAppointmentItem", async (obj, item) =>
             {
                 var oldItem = item as Item;
                 Items.Remove(oldItem);
-                var result = await SQLiteDataStorage.DelItemAsync(oldItem);
-
+                await SQLiteDataStorage.DelItemAsync(oldItem);
             });
 
             var itemsTask = SQLiteDataStorage.GetItemsAsync(Item.status.Appointment);
             itemsTask.Wait();
             var items = itemsTask.Result;
 
-
             foreach (var item in items)
             {
                 InsertItem(item);
             }
-
-
-            //var itm1 = new Item()
-            //{
-            //    DateTime = new DateTime(2020, 12, 22, 15, 30, 0),
-            //    Description = "Dodatkowy opis.",
-            //    DentistName = "Aleksandra Kasprzak",
-            //    TreatmentType = "Ekstrakcja",
-            //    Status = Item.status.Appointment
-            //};
-            //var itm2 = new Item()
-            //{
-            //    DateTime = new DateTime(2020, 12, 18, 17, 45, 0),
-            //    TreatmentType = "Wypełnienie",
-            //    DentistName = "Aleksandra Kasprzak",
-            //    Description = "Dodatkowy opis.",
-            //    Status = Item.status.Appointment
-            //};
-            //var itm3 = new Item()
-            //{
-            //    DateTime = new DateTime(2020, 12, 14, 13, 30, 0),
-            //    TreatmentType = "Wypełnienie",
-            //    DentistName = "Aleksandra Kasprzak",
-            //    Description = "Dodatkowy opis.",
-            //    Status = Item.status.Appointment
-            //};
-
-            //InsertItem(itm1);
-            //InsertItem(itm2);
-            //InsertItem(itm3);
         }
     }
 }

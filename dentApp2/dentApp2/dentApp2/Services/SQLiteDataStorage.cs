@@ -31,32 +31,14 @@ namespace dentApp2.Services
             return items.ToArrayAsync();
         }
 
-        public async Task<string> AddItemAsync(Item item)
+        public async Task AddItemAsync(Item item)
         {
-            string result = "";
-            try
-            {
-                await Connection.InsertAsync(item);
-            }
-            catch (Exception ex)
-            {
-                result = ex.ToString();
-            }
-            return result;
+            await Connection.InsertAsync(item);
         }
 
-        public async Task<string> DelItemAsync(Item item)
+        public async Task DelItemAsync(Item item)
         {
-            string result = "";
-            try
-            {
-                await Connection.DeleteAsync(item);
-            }
-            catch (Exception ex)
-            {
-                result = ex.ToString();
-            }
-            return result;
+            await Connection.DeleteAsync(item);
         }
     }
 }

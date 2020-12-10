@@ -15,7 +15,8 @@ namespace dentApp2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewItemPage : ContentPage
     {
-        bool edit_mode = false;
+        bool EditMode = false;
+        bool ButtonIsBusy = false; 
         NewItemViewModel NewItemViewModel;
 
 
@@ -29,12 +30,16 @@ namespace dentApp2.Views
         {
             InitializeComponent();
             BindingContext = NewItemViewModel = new NewItemViewModel(existing_item);
-            edit_mode = true;
+            EditMode = true;
         }
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            if (edit_mode)
+            if (ButtonIsBusy)
+                return;
+            ButtonIsBusy = true;
+
+            if (EditMode)
             {
                 NewItemViewModel.SaveEditedItem();
                 // remove old ItemDetailPage from navigation stack.
@@ -48,6 +53,10 @@ namespace dentApp2.Views
 
         async void Cancel_Clicked(object sender, EventArgs e)
         {
+            if (ButtonIsBusy)
+                return;
+            ButtonIsBusy = true;
+
             await Navigation.PopAsync();
         }
     }

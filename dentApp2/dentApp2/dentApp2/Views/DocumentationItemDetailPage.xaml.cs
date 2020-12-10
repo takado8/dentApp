@@ -14,6 +14,8 @@ namespace dentApp2.Views
 	public partial class DocumentationItemDetailPage : ContentPage
 	{
         public Item Item { get; set; }
+        bool ButtonIsBusy = false;
+
 
         public DocumentationItemDetailPage(Item Item)
         {
@@ -29,11 +31,15 @@ namespace dentApp2.Views
 
         async void ToolbarItem_Delete_Clicked(object sender, EventArgs e)
         {
+            if (ButtonIsBusy)
+                return;
+            ButtonIsBusy = true;
             if (await DisplayAlert("Uwaga!", "Usunąć wizytę?", "Tak", "Nie"))
             {
                 MessagingCenter.Send(this, "DelDocumentationItem", Item);
                 await Navigation.PopAsync();
             }
+            ButtonIsBusy = false;
         }
     }
 }
