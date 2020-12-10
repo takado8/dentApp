@@ -1,7 +1,5 @@
 ﻿using dentApp2.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace dentApp2.ViewModels

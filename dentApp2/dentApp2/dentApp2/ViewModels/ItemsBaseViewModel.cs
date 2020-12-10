@@ -1,9 +1,6 @@
 ﻿using dentApp2.Models;
 using dentApp2.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace dentApp2.ViewModels
 {

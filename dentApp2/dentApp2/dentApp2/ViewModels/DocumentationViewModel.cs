@@ -1,9 +1,6 @@
 ﻿using dentApp2.Models;
 using dentApp2.Services;
 using dentApp2.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace dentApp2.ViewModels

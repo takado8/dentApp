@@ -1,11 +1,4 @@
-﻿using dentApp2.Models;
-using dentApp2.Services;
-using dentApp2.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using Xamarin.Forms;
 
 namespace dentApp2.Views
