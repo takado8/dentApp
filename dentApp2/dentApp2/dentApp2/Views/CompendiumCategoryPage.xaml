@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="dentApp2.Views.CompendiumCategoryPage">
+    <NavigationPage.TitleView>
+        <StackLayout Margin="0,0,64,0">
+            <Label Text="Kategoria x" TextColor="WhiteSmoke" HorizontalTextAlignment="Center" FontSize="20"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ScrollView>
+        <ListView ItemsSource="{Binding Menu}" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="12">
+                            <Label Text="{Binding .}" FontSize="Medium"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ScrollView>
+</ContentPage>

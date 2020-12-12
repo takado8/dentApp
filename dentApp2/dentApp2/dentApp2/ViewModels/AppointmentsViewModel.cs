@@ -1,6 +1,7 @@
 ﻿using dentApp2.Models;
 using dentApp2.Services;
 using dentApp2.Views;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace dentApp2.ViewModels
@@ -18,12 +19,12 @@ namespace dentApp2.ViewModels
 
             MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "DelAppointmentItem", async (obj, item) =>
             {
-                DeleteItem(item);
+               await DeleteItem(item);
             });
 
             MessagingCenter.Subscribe<AppointmentItemDetailPage, Item>(this, "DelAppointmentItem", async (obj, item) =>
             {
-                DeleteItem(item);
+               await DeleteItem(item);
             });
 
             var itemsTask = SQLiteDataStorage.GetItemsAsync(Item.status.Appointment);
@@ -36,7 +37,7 @@ namespace dentApp2.ViewModels
             }
         }
 
-        async void DeleteItem(Item oldItem)
+        async Task DeleteItem(Item oldItem)
         {
             Items.Remove(oldItem);
             await SQLiteDataStorage.DelItemAsync(oldItem);

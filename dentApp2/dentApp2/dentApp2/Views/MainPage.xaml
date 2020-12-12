@@ -29,11 +29,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                <ContentView Padding="0,0,0,0">
-                    <Image Source="logo.png" Aspect="AspectFill" WidthRequest="256" HeightRequest="180" />
-                </ContentView>
-            </StackLayout>
+       
+       <Image Source="logo.png" Aspect="AspectFill" Grid.Row="0" />
+            
 
         <StackLayout Grid.Row="1" Orientation="Vertical" Padding="16,20,16,40" Spacing="10">
 
@@ -47,7 +45,7 @@
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
             <Button Margin="0,2,0,0" Text="Kompendium wiedzy"
-                       
+                        Clicked="Button_Compendium_Clicked"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
         </StackLayout>

@@ -1,6 +1,7 @@
 ﻿using dentApp2.Models;
 using dentApp2.Services;
 using dentApp2.Views;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace dentApp2.ViewModels
@@ -11,30 +12,22 @@ namespace dentApp2.ViewModels
         {
             MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "AddDocumentationItem", async (obj, item) =>
             {
-                var newItem = item as Item;
-                InsertItem(newItem);
-                await SQLiteDataStorage.AddItemAsync(newItem);
+                await AddItem(item);
             });
 
             MessagingCenter.Subscribe<AppointmentItemDetailPage, Item>(this, "AddDocumentationItem", async (obj, item) =>
             {
-                var newItem = item as Item;
-                InsertItem(newItem);
-                await SQLiteDataStorage.AddItemAsync(newItem);
+                await AddItem(item);
             });
 
             MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "DelDocumentationItem", async (obj, item) =>
             {
-                var oldItem = item as Item;
-                Items.Remove(oldItem);
-                await SQLiteDataStorage.DelItemAsync(oldItem);
+                await DeleteItem(item);
             });
 
             MessagingCenter.Subscribe<DocumentationItemDetailPage, Item>(this, "DelDocumentationItem", async (obj, item) =>
             {
-                var oldItem = item as Item;
-                Items.Remove(oldItem);
-                await SQLiteDataStorage.DelItemAsync(oldItem);
+                await DeleteItem(item);
             });
 
             var itemsTask = SQLiteDataStorage.GetItemsAsync(Item.status.Documentation);
@@ -45,6 +38,19 @@ namespace dentApp2.ViewModels
             {
                 InsertItem(item);
             }
+        }
+
+        async Task AddItem(Item item)
+        {
+            var newItem = item as Item;
+            InsertItem(newItem);
+            await SQLiteDataStorage.AddItemAsync(newItem);
+        }
+
+        async Task DeleteItem(Item item)
+        {
+            Items.Remove(item);
+            await SQLiteDataStorage.DelItemAsync(item);
         }
     }
 }

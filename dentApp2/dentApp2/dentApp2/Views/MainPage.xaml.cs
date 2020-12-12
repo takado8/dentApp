@@ -7,6 +7,7 @@ namespace dentApp2.Views
     {
         AppointmentsPage AppointmentsPage;
         DocumentationPage DocumentationPage;
+        CompendiumPage CompendiumPage;
         bool ButtonIsBusy = false;
 
         public MainPage()
@@ -34,6 +35,15 @@ namespace dentApp2.Views
             ButtonIsBusy = true;
 
             Navigation.PushAsync(DocumentationPage ?? (DocumentationPage = new DocumentationPage()));
+        }
+
+        private void Button_Compendium_Clicked(object sender, EventArgs e)
+        {
+            if (ButtonIsBusy)
+                return;
+            ButtonIsBusy = true;
+
+            Navigation.PushAsync(CompendiumPage ?? (CompendiumPage = new CompendiumPage()));
         }
 
         protected override void OnAppearing()
